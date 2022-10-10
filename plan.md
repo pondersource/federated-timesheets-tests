@@ -3,7 +3,8 @@ integrated to federate timesheet information to each other:
 
 - prejournal (https://github.com/pondersource/prejournal/)
 - timeld (https://github.com/m-ld/timeld/)
-- tikiwiki (https://gitlab.com/tikiwiki/tiki)
+- tikiwiki (https://gitlab.com/tikiwiki/tiki) with https://profiles.tiki.org/Timesheets
+profile
 
 The idea is to create a set of docker containers of these systems within a
 testnet.
