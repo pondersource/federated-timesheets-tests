@@ -6,9 +6,10 @@ services:
       context: https://github.com/ylebre/prejournal.git#main
       dockerfile: Dockerfile
     ports:
-      - 8080:80
+      - 8280:80
+    hostname: prejournal.local
     expose:
-      - 8080
+      - 8280
     depends_on:
       - prejournal-db
   prejournal-db:
@@ -31,6 +32,7 @@ services:
       - 8180
     depends_on:
       - tikiwiki-db
+    hostname: tikiwiki.local
     environment:
       - TIKI_DB_HOST=tikiwiki-db
       - TIKI_DB_USER=tiki
@@ -45,5 +47,36 @@ services:
       - MYSQL_ROOT_PASSWORD=tkwkiiii
     volumes: 
         - ./tiki-db-init:/docker-entrypoint-initdb.d
+  timeld-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+#    command: ["sleep","infinity"]
+    environment:
+      LOG_LEVEL: DEBUG
+      NODE_TLS_REJECT_UNAUTHORIZED: 0 # To accept the self-signed cert on the proxy;
+      TIMELD_GATEWAY_GATEWAY: timeld-gateway.local
+      TIMELD_GATEWAY_GENESIS: "true"
+      TIMELD_GATEWAY_AUTH__KEY: test-timeld.rootkey:123456789abcdefghijk
+      TIMELD_GATEWAY_SMTP__HOST: mailhog.local
+      TIMELD_GATEWAY_SMTP__FROM: noreply@timeld-gateway.local
+      TIMELD_GATEWAY_SMTP__AUTH__USER: timeld-gateway
+      TIMELD_GATEWAY_SMTP__AUTH__PASS: timeld-gateway
+      TIMELD_GATEWAY_ADDRESS__PORT: 8080
+      TIMELD_GATEWAY_ADDRESS__HOST: 0.0.0.0
+      TIMELD_GATEWAY_ADDRESS__PATH: 
+    ports:
+      - "8080:8080"
+    hostname: timeld-gateway.local
   timeld-cli:
     image: mldio/timeld-cli
+    hostname: timeld-cli.local
+    environment:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0 # To accept the self-signed cert on the proxy;
+  mailhog:
+    image: mailhog/mailhog
+    hostname: mailhog.local
+    environment:
+      MH_SMTP_BIND_ADDR: 0.0.0.0:587
+    ports:
+      - "8025:8025"
