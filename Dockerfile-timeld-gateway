@@ -1,0 +1,9 @@
+FROM node:16.18
+
+RUN apt-get update && apt-get -y install joe
+WORKDIR /opt
+RUN git clone -b server-bind-config https://github.com/m-ld/timeld/
+WORKDIR /opt/timeld
+RUN npm install
+EXPOSE 8080
+CMD ["node", "/opt/timeld/packages/gateway/server.mjs"]
