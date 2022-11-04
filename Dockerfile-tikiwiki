@@ -1,0 +1,20 @@
+FROM php:7.4-apache
+RUN apt-get update && \
+    apt-get install -y \
+        git \
+        zlib1g-dev \
+	libpng-dev \
+        libzip-dev \
+        libicu-dev
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd zip intl calendar bcmath
+RUN a2enmod rewrite
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+RUN git clone --depth 1 https://gitlab.com/tikiwiki/tiki.git /var/www/html
+WORKDIR /var/www/html
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN chown -R www-data:www-data /var/www/html
+RUN composer install --working-dir /var/www/html/vendor_bundled --prefer-dist
+COPY tiki/tiki-db-local.php /var/www/html/db/local.php
+EXPOSE 80
+CMD ["apache2-foreground"]
