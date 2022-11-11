@@ -12,6 +12,21 @@ services:
       - 8280
     depends_on:
       - prejournal-db
+    environment:
+      DB_USER: prejournal_test
+      DB_DATABASE: prejournal_test
+      DB_PASSWORD: 123456
+      DB_HOST: prejournal-db
+      DB_DRIVER: pdo_pgsql
+      PREJOURNAL_ADMIN_PARTY: true
+      PREJOURNAL_USERNAME: admin
+      PREJOURNAL_PASSWORD: secret
+      PREJOURNAL_DEFAULT_EMPLOYER: stichting
+      TIMELD_HOST: https://timeld-gateway.local/api
+      TIMELD_USERNAME: prejournal
+      TIMELD_PASSWORD:
+      WIKI_HOST: tikiwiki
+      WIKI_TOKEN:  
   prejournal-db:
     build:
       context: https://github.com/ylebre/prejournal.git#main
@@ -34,23 +49,23 @@ services:
       - tikiwiki-db
     hostname: tikiwiki.local
     environment:
-      - TIKI_DB_HOST=tikiwiki-db
-      - TIKI_DB_USER=tiki
-      - TIKI_DB_PASS=wiki
-      - TIKI_DB_NAME=tikiwiki
+      - TIKI_DB_HOST: tikiwiki-db
+      - TIKI_DB_USER: tiki
+      - TIKI_DB_PASS: wiki
+      - TIKI_DB_NAME: tikiwiki
   tikiwiki-db:
     image: mariadb
     environment:
-      - MYSQL_USER=tiki
-      - MYSQL_PASSWORD=wiki
-      - MYSQL_DATABASE=tikiwiki
-      - MYSQL_ROOT_PASSWORD=tkwkiiii
+      - MYSQL_USER: tiki
+      - MYSQL_PASSWORD: wiki
+      - MYSQL_DATABASE: tikiwiki
+      - MYSQL_ROOT_PASSWORD: tkwkiiii
     volumes: 
         - ./tiki-db-init:/docker-entrypoint-initdb.d
   timeld-gateway:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-timeld-gateway
 #    command: ["sleep","infinity"]
     environment:
       LOG_LEVEL: DEBUG
