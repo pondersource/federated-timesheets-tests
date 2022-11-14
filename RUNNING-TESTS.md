@@ -1,13 +1,8 @@
 docker-compose build
 docker-compose up
 
-On timeld-cli:
-timeld config --gateway http://timeld-gateway.local:8080
-timeld config --user prejournal
-timeld admin
--> enter e-mail, grab code from mailhog and enter the code
-timeld config
--> note the key auth.key value;
+Initialize timeld and get the authorization key:
+docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/init.mjs"
 
 On tikiwiki:
 tiki-init.sh
@@ -24,7 +19,5 @@ curl -d'["alice","alice123"]' http://localhost:8280/v1/register
 curl -d'["23 Sep 2022","stichting","Federated Timesheets", 8, "hard work"]' http://alice:alice123@localhost:8280/v1/worked-hours
 #curl -d'["alice"]' http://alice:alice123@localhost:8280/v1/push-to-timeld
 
-On timeld-cli:
-timeld open timesheet
-> report
-
+Check the time entry on timeld:
+docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/report.mjs"
