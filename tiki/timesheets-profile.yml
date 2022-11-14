@@ -1,0 +1,926 @@
+permissions: {  }
+preferences:
+  feature_trackers: 'y'
+  tracker_change_field_type: 'y'
+  tracker_field_rules: 'y'
+  tracker_refresh_itemslist_detail: 'y'
+  tracker_show_comments_below: 'y'
+  tracker_system_currency: 'y'
+  tracker_tabular_enabled: 'y'
+  trackerfield_autoincrement: 'y'
+  trackerfield_currency: 'y'
+  trackerfield_dropdownother: 'y'
+  trackerfield_dynamiclist: 'y'
+  trackerfield_file: 'y'
+  trackerfield_groupselector: 'y'
+  trackerfield_image: 'y'
+  trackerfield_itemslist: 'y'
+  trackerfield_math: 'y'
+  trackerfield_relation: 'y'
+  trackerfield_usergroups: 'y'
+  wikiplugin_colorbox: 'y'
+  wikiplugin_customsearch: 'y'
+  wikiplugin_footnote: 'y'
+  wikiplugin_icon: 'y'
+  wikiplugin_jq: 'y'
+  wikiplugin_js: 'y'
+  wikiplugin_listexecute: 'y'
+  wikiplugin_objectlink: 'y'
+  wikiplugin_pivottable: 'y'
+  wikiplugin_preference: 'y'
+  wikiplugin_preview: 'y'
+  wikiplugin_sign: 'y'
+  wikiplugin_tr: 'y'
+  wikiplugin_trackercalendar: 'y'
+  wikiplugin_trackerquerytemplate: 'y'
+  feature_wiki: 'y'
+  wikiHomePage: '$profileobject:timesheets_homepage$'
+objects:
+  -
+    type: tracker
+    ref: timesheets
+    _id: '71'
+    _timestamp: 1661847907
+    data:
+      name: Timesheets
+      description: ''
+      restrict_end: '0'
+      form_classes: ''
+      restrict_start: '0'
+  -
+    type: tracker_field
+    ref: timesheets_tsUser
+    _id: '986'
+    _timestamp: 1661847907
+    data:
+      name: User
+      permname: tsUser
+      tracker: '$profileobject:timesheets$'
+      options:
+        autoassign: 1
+        owner: 1
+        notify_template_format: text
+        groupIds:
+          - 0
+        canChangeGroupIds:
+          - 0
+        showRealname: 1
+      type: user
+      order: '0'
+      visby: {  }
+      editby: {  }
+      flags:
+        - link
+        - list
+        - public
+        - mandatory
+  -
+    type: tracker_field
+    ref: timesheets_tsProject
+    _id: '990'
+    _timestamp: 1661847907
+    data:
+      name: Project
+      permname: tsProject
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        autocomplete: 'n'
+        exact: 'n'
+      type: text_field
+      order: '10'
+      visby: {  }
+      editby: {  }
+      flags:
+        - link
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsTask
+    _id: '991'
+    _timestamp: 1661847907
+    data:
+      name: Task
+      permname: tsTask
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        autocomplete: 'n'
+        exact: 'n'
+      type: text_field
+      order: '20'
+      visby: {  }
+      editby: {  }
+      flags:
+        - link
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsDescription
+    _id: '989'
+    _timestamp: 1661847907
+    data:
+      name: Description
+      permname: tsDescription
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        distinct: 'n'
+        wysiwyg: 'n'
+      type: text_area
+      order: '30'
+      visby: {  }
+      editby: {  }
+      flags:
+        - link
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsStartTime
+    _id: '992'
+    _timestamp: 1661847907
+    data:
+      name: 'Start Time'
+      permname: tsStartTime
+      tracker: '$profileobject:timesheets$'
+      options:
+        datetime: dt
+        blankdate: blank
+      type: calendar
+      order: '40'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsEndTime
+    _id: '993'
+    _timestamp: 1661847907
+    data:
+      name: 'End Time'
+      permname: tsEndTime
+      tracker: '$profileobject:timesheets$'
+      options:
+        datetime: dt
+        blankdate: blank
+      type: calendar
+      order: '50'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsDate
+    _id: '987'
+    _timestamp: 1661847907
+    data:
+      name: Date
+      permname: tsDate
+      tracker: '$profileobject:timesheets$'
+      options:
+        datetime: d
+        blankdate: blank
+      type: calendar
+      order: '60'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsDuration
+    _id: '988'
+    _timestamp: 1661847907
+    data:
+      name: Duration
+      permname: tsDuration
+      tracker: '$profileobject:timesheets$'
+      options:
+        minutes: 1
+        hours: 1
+      type: DUR
+      order: '70'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsMinutesCalculated
+    _id: '994'
+    _timestamp: 1661847907
+    data:
+      name: 'Minutes (Calculated)'
+      permname: tsMinutesCalculated
+      tracker: '$profileobject:timesheets$'
+      options:
+        calculation: '(coalesce (round (div tsDuration 60) 0) (round (div (sub tsEndTime tsStartTime) 60) 0) 0)'
+        recalculate: index
+      type: math
+      order: '80'
+      visby: {  }
+      editby: {  }
+      flags:
+        - link
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsHoursCalculated
+    _id: '995'
+    _timestamp: 1661847907
+    data:
+      name: 'Hours (Calculated)'
+      permname: tsHoursCalculated
+      tracker: '$profileobject:timesheets$'
+      options:
+        calculation: '(round (div tsMinutesCalculated 60) 2)'
+        recalculate: index
+      type: math
+      order: '90'
+      visby: {  }
+      editby: {  }
+      flags:
+        - link
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsURI
+    _id: '1005'
+    _timestamp: 1661847907
+    data:
+      name: URI
+      permname: tsURI
+      tracker: '$profileobject:timesheets$'
+      options:
+        calculation: '(coalesce tsTimeldID tsURI (concat base_url (str api/trackers/) trackerId (str /items/) itemId))'
+        recalculate: save
+        sortField: text_sort
+      type: math
+      order: '100'
+      visby: {  }
+      editby: {  }
+      flags:
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsMiteID
+    _id: '998'
+    _timestamp: 1661847907
+    data:
+      name: 'Mite ID'
+      permname: tsMiteID
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        dec_point: .
+      type: numeric
+      order: '110'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsSource
+    _id: '1001'
+    _timestamp: 1661847907
+    data:
+      name: Source
+      permname: tsSource
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        autocomplete: 'n'
+        exact: 'n'
+      type: text_field
+      order: '120'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsPrejournalID
+    _id: '1003'
+    _timestamp: 1661847907
+    data:
+      name: 'Prejournal ID'
+      permname: tsPrejournalID
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        autocomplete: 'n'
+        exact: 'n'
+      type: text_field
+      order: '130'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsTimeldID
+    _id: '1004'
+    _timestamp: 1661847907
+    data:
+      name: 'Timeld ID'
+      permname: tsTimeldID
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+      type: text_field
+      order: '140'
+      visby: {  }
+      editby: {  }
+      flags:
+        - list
+        - public
+  -
+    type: tracker_field
+    ref: timesheets_tsScoroID
+    _id: '1007'
+    _timestamp: 1661847907
+    data:
+      name: 'Scoro ID'
+      permname: tsScoroID
+      tracker: '$profileobject:timesheets$'
+      options:
+        samerow: 1
+        autocomplete: 'n'
+        exact: 'n'
+      type: text_field
+      order: '150'
+      visby: {  }
+      editby: {  }
+      flags:
+        - public
+  -
+    type: tracker_option
+    ref: timesheets_sort_default_field
+    _id: sort_default_field-71
+    _timestamp: 1661847907
+    data:
+      tracker: '$profileobject:timesheets$'
+      name: sort_default_field
+      value: modification
+  -
+    type: tabular
+    ref: timesheet_full
+    _id: '16'
+    _timestamp: 1661847927
+    data:
+      name: 'Timesheet - Full'
+      tracker: '$profileobject:timesheets$'
+      fields:
+        -
+          label: URI
+          field: '$profileobject:timesheets_tsURI$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'y'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: User
+          field: '$profileobject:timesheets_tsUser$'
+          mode: username
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Project
+          field: '$profileobject:timesheets_tsProject$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Task
+          field: '$profileobject:timesheets_tsTask$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Description
+          field: '$profileobject:timesheets_tsDescription$'
+          mode: default-raw
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'Start Time'
+          field: '$profileobject:timesheets_tsStartTime$'
+          mode: 'long datetime format'
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'End Time'
+          field: '$profileobject:timesheets_tsEndTime$'
+          mode: 'long datetime format'
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Date
+          field: '$profileobject:timesheets_tsDate$'
+          mode: yyyy-mm-dd
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Duration
+          field: '$profileobject:timesheets_tsDuration$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'Minutes (Calculated)'
+          field: '$profileobject:timesheets_tsMinutesCalculated$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'Hours (Calculated)'
+          field: '$profileobject:timesheets_tsHoursCalculated$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+      filters: {  }
+      config:
+        simple_headers: 1
+        import_update: 1
+        ignore_blanks: 0
+        import_transaction: 0
+        bulk_import: 0
+        skip_unmodified: 0
+        encoding: ''
+        format: ''
+      odbc_config: {  }
+      api_config: {  }
+  -
+    type: tabular
+    ref: timesheet_time
+    _id: '17'
+    _timestamp: 1661847928
+    data:
+      name: 'Timesheet - Time'
+      tracker: '$profileobject:timesheets$'
+      fields:
+        -
+          label: 'User name'
+          field: '$profileobject:timesheets_tsUser$'
+          mode: username
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'Project name'
+          field: '$profileobject:timesheets_tsProject$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Issue
+          field: '$profileobject:timesheets_tsDescription$'
+          mode: default-raw
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Time
+          field: '$profileobject:timesheets_tsDuration$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'Start date'
+          field: '$profileobject:timesheets_tsStartTime$'
+          mode: 'long datetime format'
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'End date'
+          field: '$profileobject:timesheets_tsEndTime$'
+          mode: 'long datetime format'
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+      filters: {  }
+      config:
+        simple_headers: 1
+        import_update: 1
+        ignore_blanks: 0
+        import_transaction: 0
+        bulk_import: 0
+        skip_unmodified: 0
+        encoding: ''
+      odbc_config: {  }
+      api_config: {  }
+  -
+    type: tabular
+    ref: timesheet_prejournal
+    _id: '21'
+    _timestamp: 1661847937
+    data:
+      name: 'Timesheet - prejournal'
+      tracker: '$profileobject:timesheets$'
+      fields:
+        -
+          label: User
+          field: '$profileobject:timesheets_tsUser$'
+          mode: username
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Project
+          field: '$profileobject:timesheets_tsProject$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Hours (Calculated)
+          field: '$profileobject:timesheets_tsDuration$'
+          mode: number-hours
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Description
+          field: '$profileobject:timesheets_tsDescription$'
+          mode: default-raw
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: URI
+          field: '$profileobject:timesheets_tsPrejournalID$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'y'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Date
+          field: '$profileobject:timesheets_tsStartTime$'
+          mode: 'yyyy-mm-dd hh:mm:ss'
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+      filters:
+        -
+          label: Project
+          field: '$profileobject:timesheets_tsProject$'
+          mode: fulltext
+          position: default
+      config:
+        simple_headers: 1
+        import_update: 1
+        ignore_blanks: 0
+        import_transaction: 1
+        bulk_import: 0
+        skip_unmodified: 0
+        encoding: ''
+        format: 
+        mapping: null
+      odbc_config: {  }
+      api_config:
+        list_url: 'http://prejournal.local/v1/print-timesheet-json'
+        list_method: POST
+        list_parameters: '["%worker%:%project%"]'
+        list_data_path: ''
+        list_mapping: ''
+        create_url: 'http://prejournal.local/v1/worked-hours'
+        create_method: POST
+        create_format: '["%timestamp_%", "%worker%", "%project%", "%amount%", "%description%", "%worker%"]'
+        update_url: 'http://prejournal.local/v1/update-entry'
+        update_method: POST
+        update_format: '["%timestamp_%", "%worker%:%project%", "%amount%", "%movementId%"]'
+        update_limit: ''
+        modify_data_path: '0'
+  -
+    type: tabular
+    ref: timesheet_timeld
+    _id: '23'
+    _timestamp: 1661847938
+    data:
+      name: 'Timesheet - timeld'
+      tracker: '$profileobject:timesheets$'
+      fields:
+        -
+          label: user
+          field: '$profileobject:timesheets_tsUser$'
+          mode: username
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: project
+          field: '$profileobject:timesheets_tsProject$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: description
+          field: '$profileobject:timesheets_tsDescription$'
+          mode: default-raw
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: start_date
+          field: '$profileobject:timesheets_tsStartTime$'
+          mode: 'yyyy-mm-ddThh:mm:ss(+/-)TZ'
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: duration
+          field: '$profileobject:timesheets_tsDuration$'
+          mode: number-minutes
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: id
+          field: '$profileobject:timesheets_tsTimeldID$'
+          mode: default
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: uri
+          field: '$profileobject:timesheets_tsURI$'
+          mode: default-recalc
+          remoteField: ''
+          displayAlign: left
+          isPrimary: 'y'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+      filters: {  }
+      config:
+        simple_headers: 0
+        import_update: 1
+        ignore_blanks: 0
+        import_transaction: 0
+        bulk_import: 0
+        skip_unmodified: 0
+        encoding: ''
+        format: ndjson
+        mapping: null
+      odbc_config: {  }
+      api_config:
+        list_url: 'https://timeld.org/api/rpt/%user%/own/%project%'
+        list_method: GET
+        list_parameters: ''
+        list_data_path: ''
+        list_mapping: "[\r\n  {\"struct\": {\"@id\":\"fedb/fedt\",\"@type\":\"Project\"}, \"repeat\": \"1\"},\r\n  {\"struct\": {\"@type\":\"Timesheet\",\"@id\":\"%user%/%project%\"}, \"repeat\": \"n\"},\r\n  {\"struct\": {\"@type\":\"Entry\",\"@id\":\"%id-uri%\",\"activity\":\"%description%\",\"duration\":\"%duration%\",\"start.@value\":\"%start_date%\",\"vf:provider.@id\":\"http://timeld.org/%user%\",\"external.@id\":\"%uri%\"}, \"repeat\": \"n\"}\r\n]"
+        create_url: 'https://timeld.org/api/import'
+        create_method: POST
+        create_format: "{\"@id\":\"fedb/fedt\",\"@type\":\"Project\"}\r\n{\"@type\":\"Timesheet\",\"project\":[{\"@id\":\"fedb/fedt\"}],\"@id\":\"%user%/%project%\"}\r\n{\"@type\":\"Entry\",\"session\":{\"@id\":\"%user%/%project%\"},\"activity\":\"%description%\",\"duration\":%duration%,\"start\":{\"@value\":\"%start_date%\",\"@type\":\"http://www.w3.org/2001/XMLSchema#dateTime\"},\"vf:provider\":{\"@id\":\"http://timeld.org/%user%\"},\"external\":{\"@id\":\"%uri%\"}}"
+        update_url: 'https://timeld.org/api/import'
+        update_method: POST
+        update_format: "{\"@id\":\"fedb/fedt\",\"@type\":\"Project\"}\r\n{\"@type\":\"Timesheet\",\"project\":[{\"@id\":\"fedb/fedt\"}],\"@id\":\"%user%/%project%\"}\r\n{\"@type\":\"Entry\",\"session\":{\"@id\":\"%user%/%project%\"},\"activity\":\"%description%\",\"duration\":%duration%,\"start\":{\"@value\":\"%start_date%\",\"@type\":\"http://www.w3.org/2001/XMLSchema#dateTime\"},\"vf:provider\":{\"@id\":\"http://timeld.org/%user%\"},\"external\":{\"@id\":\"%uri%\"}}"
+        update_limit: id=
+        modify_data_path: ''
+  -
+    type: tabular
+    ref: timesheet_ical
+    _id: '24'
+    _timestamp: 1661847942
+    data:
+      name: 'Timesheet - iCal'
+      tracker: '$profileobject:timesheets$'
+      fields:
+        -
+          label: URI
+          field: '$profileobject:timesheets_tsURI$'
+          mode: default
+          remoteField: URL
+          displayAlign: left
+          isPrimary: 'y'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: User
+          field: '$profileobject:timesheets_tsUser$'
+          mode: username
+          remoteField: ORGANIZER
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Project
+          field: '$profileobject:timesheets_tsProject$'
+          mode: default
+          remoteField: SUMMARY
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Description
+          field: '$profileobject:timesheets_tsDescription$'
+          mode: default-raw
+          remoteField: DESCRIPTION
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'Start Time'
+          field: '$profileobject:timesheets_tsStartTime$'
+          mode: 'long datetime format'
+          remoteField: DTSTART
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: 'End Time'
+          field: '$profileobject:timesheets_tsEndTime$'
+          mode: 'long datetime format'
+          remoteField: DTEND
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+        -
+          label: Duration
+          field: '$profileobject:timesheets_tsDuration$'
+          mode: iso8601
+          remoteField: DURATION
+          displayAlign: left
+          isPrimary: 'n'
+          isReadOnly: 'n'
+          isExportOnly: 'n'
+          isUniqueKey: 'n'
+      filters: {  }
+      config:
+        simple_headers: 1
+        import_update: 1
+        ignore_blanks: 0
+        import_transaction: 0
+        bulk_import: 0
+        skip_unmodified: 0
+        encoding: ''
+        format: ical
+        mapping: null
+      odbc_config: {  }
+      api_config: {  }
+  -
+    type: wiki_page
+    ref: timesheets_entry_start_and_end_time
+    _id: 'Timesheets entry - start and end time'
+    _timestamp: 1649767998
+    data:
+      name: 'Timesheets entry - start and end time'
+      content: 'wikicontent:Timesheets entry - start and end time'
+      lang: en
+      wysiwyg: 'n'
+  -
+    type: wiki_page
+    ref: timesheets_entry_date_and_duration
+    _id: 'Timesheets entry - date and duration'
+    _timestamp: 1649768009
+    data:
+      name: 'Timesheets entry - date and duration'
+      content: 'wikicontent:Timesheets entry - date and duration'
+      lang: en
+      wysiwyg: 'n'
+  -
+    type: wiki_page
+    ref: timesheets_homepage
+    _id: 'Timesheets homepage'
+    _timestamp: 1649769181
+    data:
+      name: 'Timesheets homepage'
+      content: 'wikicontent:Timesheets homepage'
+      lang: en
+      wysiwyg: 'n'
+  -
+    type: wiki_page
+    ref: timesheets_list
+    _id: 'Timesheets list'
+    _timestamp: 1649769186
+    data:
+      name: 'Timesheets list'
+      content: 'wikicontent:Timesheets list'
+      lang: en
+      wysiwyg: 'n'
+unknown_objects: {  }
