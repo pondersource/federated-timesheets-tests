@@ -45,13 +45,10 @@ services:
       - MYSQL_PASSWORD=wiki
       - MYSQL_DATABASE=tikiwiki
       - MYSQL_ROOT_PASSWORD=tkwkiiii
-    volumes: 
-        - ./tiki-db-init:/docker-entrypoint-initdb.d
   timeld-gateway:
     build:
       context: .
       dockerfile: Dockerfile-timeld-gateway
-#    command: ["sleep","infinity"]
     environment:
       LOG_LEVEL: DEBUG
       NODE_TLS_REJECT_UNAUTHORIZED: 0 # To accept the self-signed cert on the proxy;
@@ -73,6 +70,8 @@ services:
     hostname: timeld-cli.local
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0 # To accept the self-signed cert on the proxy;
+    volumes: 
+      - ./timeld:/timeld
   mailhog:
     image: mailhog/mailhog
     hostname: mailhog.local
