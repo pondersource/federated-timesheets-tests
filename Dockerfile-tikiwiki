@@ -16,5 +16,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN chown -R www-data:www-data /var/www/html
 RUN composer install --working-dir /var/www/html/vendor_bundled --prefer-dist
 COPY tiki/tiki-db-local.php /var/www/html/db/local.php
+COPY tiki/timesheets-profile.yml /profile/timesheets-profile.yml
+COPY tiki/init.sh /usr/local/bin/tiki-init.sh
+RUN chmod 775 /usr/local/bin/tiki-init.sh
+
 EXPOSE 80
 CMD ["apache2-foreground"]
