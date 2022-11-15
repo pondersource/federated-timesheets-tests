@@ -3,22 +3,7 @@ import fetch from 'node-fetch'
 var spawn = cp.spawn;
 
 var a = spawn('timeld',['config', '--gateway', 'http://timeld-gateway.local:8080']);
-a.stdout.on('data',function (data) {
-    console.log(data.toString())
-});
-
-a.stderr.on('data',function (data) {
-    console.log(data.toString())
-});
 var b = spawn('timeld',['config', '--user', 'prejournal']);
-b.stdout.on('data',function (data) {
-    console.log(data.toString())
-});
-
-b.stderr.on('data',function (data) {
-    console.log(data.toString())
-});
-
 setTimeout(function() {
     var p = spawn('timeld',['admin']);
     p.stdout.on('data',function (data) {
@@ -38,12 +23,11 @@ setTimeout(function() {
             return code;
         })
         .then(function(code) {
-            console.log("Entering code " + code);
             p.stdin.write(code + "\n");
             setTimeout(function() {
                 p.stdout.on('data',function (data) {
-                    console.log(">>> " + data.toString())
-                    p.stdout.on('data',function (data) {
+                    console.log(data.toString())
+                        p.stdout.on('data',function (data) {
                     });
                 });
                 p.stdin.write("key\n");
