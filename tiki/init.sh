@@ -8,3 +8,4 @@ php console.php profile:apply timesheets-profile /profile
 cp _htaccess .htaccess
 chown www-data:www-data temp
 php console.php installer:lock
+php /usr/local/bin/add-api-token.php
