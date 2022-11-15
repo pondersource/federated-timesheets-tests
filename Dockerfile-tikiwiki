@@ -19,6 +19,6 @@ COPY tiki/tiki-db-local.php /var/www/html/db/local.php
 COPY tiki/timesheets-profile.yml /profile/timesheets-profile.yml
 COPY tiki/init.sh /usr/local/bin/tiki-init.sh
 RUN chmod 775 /usr/local/bin/tiki-init.sh
-
+COPY tiki/add-api-token.php /usr/local/bin/add-api-token.php
 EXPOSE 80
 CMD ["apache2-foreground"]
