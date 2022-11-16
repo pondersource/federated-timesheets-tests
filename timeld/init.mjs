@@ -23,16 +23,20 @@ setTimeout(function() {
             return code;
         })
         .then(function(code) {
+            var receivedLines = '';
             p.stdin.write(code + "\n");
             setTimeout(function() {
                 p.stdout.on('data',function (data) {
-                    console.log(data.toString())
+                    receivedLines += data.toString();
                         p.stdout.on('data',function (data) {
                     });
                 });
                 p.stdin.write("key\n");
                 p.stdin.write("exit\n");
                 p.stdin.end();
+                setTimeout(function() {
+                    console.log(receivedLines.split("\n")[0]);
+                }, 1000);
             }, 1000);
         });
     }, 4000);
