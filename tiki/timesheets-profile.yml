@@ -675,15 +675,15 @@ objects:
       api_config:
         list_url: 'http://prejournal.local/v1/print-timesheet-json'
         list_method: POST
-        list_parameters: '["%worker%:%project%"]'
+        list_parameters: '["%User%:%Project%"]'
         list_data_path: ''
         list_mapping: ''
         create_url: 'http://prejournal.local/v1/worked-hours'
         create_method: POST
-        create_format: '["%timestamp_%", "%worker%", "%project%", "%amount%", "%description%", "%worker%"]'
+        create_format: '["%Date%", "%User%", "%Project%", "%Hours (Calculated)%", "%Description%", "%User%"]'
         update_url: 'http://prejournal.local/v1/update-entry'
         update_method: POST
-        update_format: '["%timestamp_%", "%worker%:%project%", "%amount%", "%movementId%"]'
+        update_format: '["%Date%", "%User%:%Project%", "%Hours (Calculated)%", "%URI%"]'
         update_limit: ''
         modify_data_path: '0'
   -
@@ -778,17 +778,17 @@ objects:
         mapping: null
       odbc_config: {  }
       api_config:
-        list_url: 'https://timeld.org/api/rpt/%user%/own/%project%'
+        list_url: 'http://timeld-gateway.local:8080/api/rpt/%user%/own/%project%'
         list_method: GET
         list_parameters: ''
         list_data_path: ''
-        list_mapping: "[\r\n  {\"struct\": {\"@id\":\"fedb/fedt\",\"@type\":\"Project\"}, \"repeat\": \"1\"},\r\n  {\"struct\": {\"@type\":\"Timesheet\",\"@id\":\"%user%/%project%\"}, \"repeat\": \"n\"},\r\n  {\"struct\": {\"@type\":\"Entry\",\"@id\":\"%id-uri%\",\"activity\":\"%description%\",\"duration\":\"%duration%\",\"start.@value\":\"%start_date%\",\"vf:provider.@id\":\"http://timeld.org/%user%\",\"external.@id\":\"%uri%\"}, \"repeat\": \"n\"}\r\n]"
-        create_url: 'https://timeld.org/api/import'
+        list_mapping: "[\r\n  {\"struct\": {\"@id\":\"%user%/%project%\",\"@type\":\"Project\"}, \"repeat\": \"1\"},\r\n  {\"struct\": {\"@type\":\"Timesheet\",\"@id\":\"%user%/%project%\"}, \"repeat\": \"n\"},\r\n  {\"struct\": {\"@type\":\"Entry\",\"@id\":\"%id-uri%\",\"activity\":\"%description%\",\"duration\":\"%duration%\",\"start.@value\":\"%start_date%\",\"vf:provider.@id\":\"http://timeld-gateway.local:8080/%user%\",\"external.@id\":\"%uri%\"}, \"repeat\": \"n\"}\r\n]"
+        create_url: 'http://timeld-gateway.local:8080/api/import'
         create_method: POST
-        create_format: "{\"@id\":\"fedb/fedt\",\"@type\":\"Project\"}\r\n{\"@type\":\"Timesheet\",\"project\":[{\"@id\":\"fedb/fedt\"}],\"@id\":\"%user%/%project%\"}\r\n{\"@type\":\"Entry\",\"session\":{\"@id\":\"%user%/%project%\"},\"activity\":\"%description%\",\"duration\":%duration%,\"start\":{\"@value\":\"%start_date%\",\"@type\":\"http://www.w3.org/2001/XMLSchema#dateTime\"},\"vf:provider\":{\"@id\":\"http://timeld.org/%user%\"},\"external\":{\"@id\":\"%uri%\"}}"
-        update_url: 'https://timeld.org/api/import'
+        create_format: "{\"@id\":\"%user%/%project%\",\"@type\":\"Project\"}\r\n{\"@type\":\"Timesheet\",\"project\":[{\"@id\":\"%user%/%project%\"}],\"@id\":\"%user%/%project%\"}\r\n{\"@type\":\"Entry\",\"session\":{\"@id\":\"%user%/%project%\"},\"activity\":\"%description%\",\"duration\":%duration%,\"start\":{\"@value\":\"%start_date%\",\"@type\":\"http://www.w3.org/2001/XMLSchema#dateTime\"},\"vf:provider\":{\"@id\":\"http://timeld-gateway.local:8080/%user%\"},\"external\":{\"@id\":\"%uri%\"}}"
+        update_url: 'http://timeld-gateway.local:8080/api/import'
         update_method: POST
-        update_format: "{\"@id\":\"fedb/fedt\",\"@type\":\"Project\"}\r\n{\"@type\":\"Timesheet\",\"project\":[{\"@id\":\"fedb/fedt\"}],\"@id\":\"%user%/%project%\"}\r\n{\"@type\":\"Entry\",\"session\":{\"@id\":\"%user%/%project%\"},\"activity\":\"%description%\",\"duration\":%duration%,\"start\":{\"@value\":\"%start_date%\",\"@type\":\"http://www.w3.org/2001/XMLSchema#dateTime\"},\"vf:provider\":{\"@id\":\"http://timeld.org/%user%\"},\"external\":{\"@id\":\"%uri%\"}}"
+        update_format: "{\"@id\":\"%user%/%project%\",\"@type\":\"Project\"}\r\n{\"@type\":\"Timesheet\",\"project\":[{\"@id\":\"%user%/%project%\"}],\"@id\":\"%user%/%project%\"}\r\n{\"@type\":\"Entry\",\"session\":{\"@id\":\"%user%/%project%\"},\"activity\":\"%description%\",\"duration\":%duration%,\"start\":{\"@value\":\"%start_date%\",\"@type\":\"http://www.w3.org/2001/XMLSchema#dateTime\"},\"vf:provider\":{\"@id\":\"http://timeld-gateway.local:8080/%user%\"},\"external\":{\"@id\":\"%uri%\"}}"
         update_limit: id=
         modify_data_path: ''
   -
