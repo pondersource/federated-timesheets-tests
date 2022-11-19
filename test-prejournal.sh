@@ -18,9 +18,9 @@ echo "WIKI_TOKEN=testnet-supersecret-token" >> testnet.env
 echo "WIKI_HOST=http://tikiwiki.local/api/tabulars" >> testnet.env
 echo "WIKI_TABULAR_ID=3" >> testnet.env
 echo "TIMELD_HOST=http://timeld-gateway.local:8080/api" >> testnet.env
-echo "TIMELD_USERNAME=prejournal" >> testnet.env
-echo "TIMELD_TIMESHEET=prejournal/timesheet" >> testnet.env
-echo "TIMELD_PROJECT=prejournal/timesheet-project" >> testnet.env
+echo "TIMELD_USERNAME=alice" >> testnet.env
+echo "TIMELD_TIMESHEET=alice/timesheet" >> testnet.env
+echo "TIMELD_PROJECT=alice/project" >> testnet.env
 echo "TIMELD_PASSWORD=$TIMELD_PASSWORD" >> testnet.env
 docker cp testnet.env federation-tests_prejournal_1:/app/.env
 

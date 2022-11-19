@@ -22,7 +22,7 @@ docker exec -u www-data -it federation-tests_tikiwiki_1 "php" "/profile/add-cred
 
 # FIXME: Add this
 echo "--- Entering timesheet entry in tiki"
-curl -X POST -H "Authorization: Bearer testnet-supersecret-token" -d 'fields[tsUser]=prejournal&fields[tsProject]=timesheet&fields[tsDate]=1668460845&fields[tsDescription]=This%20is%20the%20description%20to%20check%20for&fields[tsDuration]=%7B%22hours%22%3A2%2C%22minutes%22%3A0%7D&fields[tsStartTime]=1668460845&fields[tsEndTime]=1668468045' http://localhost:8180/api/trackers/1/items
+curl -X POST -H "Authorization: Bearer testnet-supersecret-token" -d 'fields[tsUser]=alice&fields[tsProject]=timesheet&fields[tsDate]=1668460845&fields[tsDescription]=This%20is%20the%20description%20to%20check%20for&fields[tsDuration]=%7B%22hours%22%3A2%2C%22minutes%22%3A0%7D&fields[tsStartTime]=1668460845&fields[tsEndTime]=1668468045' http://localhost:8180/api/trackers/1/items
 
 # FIXME: Add this
 echo "--- Triggering federation exports for tiki"

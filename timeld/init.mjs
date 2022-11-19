@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 var spawn = cp.spawn;
 
 var a = spawn('timeld',['config', '--gateway', 'http://timeld-gateway.local:8080']);
-var b = spawn('timeld',['config', '--user', 'prejournal']);
+var b = spawn('timeld',['config', '--user', 'alice']);
 setTimeout(function() {
     var p = spawn('timeld',['admin']);
     p.stdout.on('data',function (data) {
