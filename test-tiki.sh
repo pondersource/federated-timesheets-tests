@@ -1,5 +1,5 @@
 #!/bin/bash
-docker-compose -p federated-timesheets-tests up -d
+docker-compose --compatibility -p federated-timesheets-tests up -d
 
 echo "--- Initializing timeld"
 export TIMELD_PASSWORD=`docker exec -it federated-timesheets-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/init.mjs"`
