@@ -1,25 +1,25 @@
 #!/bin/bash
-docker-compose up -d
+docker-compose up -p federated-timesheets-tests -d
 
 echo "--- Initializing timeld"
-export TIMELD_PASSWORD=`docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/init.mjs"`
-docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/report.mjs"
+export TIMELD_PASSWORD=`docker exec -it federated-timesheets-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/init.mjs"`
+docker exec -it federated-timesheets-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/report.mjs"
 echo "--- Extracted key: $TIMELD_PASSWORD"
 
 echo "--- Installing tikiwiki"
-docker exec -u www-data -it federation-tests_tikiwiki_1 "/bin/sh" "/usr/local/bin/tiki-init.sh"
+docker exec -u www-data -it federated-timesheets-tests_tikiwiki_1 "/bin/sh" "/usr/local/bin/tiki-init.sh"
 
 echo "--- Setting up environment for prejournal"
 cp prejournal/testnet.env testnet.env
-docker cp testnet.env federation-tests_prejournal_1:/app/.env
+docker cp testnet.env federated-timesheets-tests_prejournal_1:/app/.env
 curl -d'["alice","alice123"]' http://localhost:8280/v1/register
 
 echo "--- Connecting timeld to prejournal and tiki"
-docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/connect-prejournal.mjs"
-docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/connect-tiki.mjs"
+docker exec -it federated-timesheets-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/connect-prejournal.mjs"
+docker exec -it federated-timesheets-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/connect-tiki.mjs"
 
 echo "--- Entering timesheet entry in timeld"
-docker exec -it federation-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/timesheet-entry.mjs"
+docker exec -it federated-timesheets-tests_timeld-cli_1 "/usr/local/bin/node" "/timeld/timesheet-entry.mjs"
 
 echo "--- Fetching report from prejournal"
 curl -d'["0"]' http://alice:alice123@localhost:8280/v1/print-timesheet-json > prejournal-report.json
