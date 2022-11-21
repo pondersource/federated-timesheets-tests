@@ -13,7 +13,7 @@ The testing ecosystem consists of the following docker containers:
 - tikiwiki-db - the mariadb for tikiwiki
 - timeld-gateway - the timeld gateway and API
 - timeld-cli - the CLI package for timeld
-- mailhog - stores and sent emails and makes them available via API
+- mailhog - stores any sent emails and makes them available via API
 
 From the outside, the following (web) services are exposed:
 - localhost:8280 - prejournal
