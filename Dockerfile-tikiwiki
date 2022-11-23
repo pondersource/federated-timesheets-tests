@@ -5,7 +5,8 @@ RUN apt-get update && \
         zlib1g-dev \
 	libpng-dev \
         libzip-dev \
-        libicu-dev
+        libicu-dev \
+        tesseract-ocr
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql gd zip intl calendar bcmath
 RUN a2enmod rewrite
