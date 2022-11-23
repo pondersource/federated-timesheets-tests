@@ -504,6 +504,7 @@ objects:
         skip_unmodified: 0
         encoding: ''
         format: ''
+        mapping: ''
       odbc_config: {  }
       api_config: {  }
   -
@@ -584,6 +585,8 @@ objects:
         bulk_import: 0
         skip_unmodified: 0
         encoding: ''
+        format: ''
+        mapping: ''
       odbc_config: {  }
       api_config: {  }
   -
@@ -655,12 +658,7 @@ objects:
           isReadOnly: 'n'
           isExportOnly: 'n'
           isUniqueKey: 'n'
-      filters:
-        -
-          label: Project
-          field: '$profileobject:timesheets_tsProject$'
-          mode: fulltext
-          position: default
+      filters: {  }
       config:
         simple_headers: 1
         import_update: 1
@@ -669,8 +667,8 @@ objects:
         bulk_import: 0
         skip_unmodified: 0
         encoding: ''
-        format: 
-        mapping: null
+        format: '' 
+        mapping: ''
       odbc_config: {  }
       api_config:
         list_url: 'http://prejournal.local/v1/print-timesheet-json'
