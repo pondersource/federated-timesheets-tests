@@ -3,7 +3,7 @@ version: '3'
 services:
   prejournal:
     build:
-      context: https://github.com/ylebre/prejournal.git#main
+      context: https://github.com/pondersource/prejournal.git#testsuite
       dockerfile: Dockerfile
     ports:
       - 8280:80
@@ -14,7 +14,7 @@ services:
       - prejournal-db
   prejournal-db:
     build:
-      context: https://github.com/ylebre/prejournal.git#main
+      context: https://github.com/pondersource/prejournal.git#testsuite
       dockerfile: Dockerfile-postgres
     ports:
       - 5432:5432
